@@ -4,7 +4,7 @@
 </symbol>
 </svg>
 
-<!-- подкючение svg к разметке: 
+ <!-- подкючение svg к разметке: 
 <svg class ="floppy" viewBox="0 0 28 28">
       <use href="/svg/floppy.svg#floppy">
 

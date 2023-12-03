@@ -23,14 +23,16 @@
   padding-block-start: 100px;
   min-inline-size: 320px;
   min-block-size: 100dvb;
-  background-image: var(--background-image);
-  background-color: white;
   font-family: var(--main-font-family);
   font-variation-settings: "wght" 400;
   font-size: var(--font-size);
   color: var(--color-main);
   line-height: var(--line-height);
+  background-image: var(--bg-gradient);
+  background-size: cover;
+  background-attachment: fixed;
 }
+/* Стилизация шапки */
 .header {
   display: grid;
   justify-items: center;
@@ -38,6 +40,7 @@
   font-family: var(--accent-font-family);
   inline-size: min(100%, 700px);
   text-transform: uppercase;
+  background-color: white;
 }
 .title {
   font-size: clamp(3.0625rem, 2.7104rem + 1.5023vw, 4.0625rem);
@@ -58,96 +61,197 @@
   padding-block-end: 25px;
 }
 .theme-menu__button {
+  position: relative;
+  transition: color 0.3s ease;
+  cursor: pointer;
   outline: none;
-  border:none;
+  border: none;
   background-color: transparent;
   text-transform: uppercase;
 }
+/* Стилизация анимации в меню, добавление курсора стрелки + фокус */
 
-.floppy {
-  max-width: 28px;
+.theme-menu__button:disabled {
+  opacity: 0.6;
+  pointer-events: none;
 }
 
-.main{
+.theme-menu__button:disabled::before {
+  content: "▶";
+  position: absolute;
+  color: var(--color-main);
+  inset-inline-start: -18px;
+  animation: pointer_theme 0.5s infinite alternate ease-in-out;
+}
+.theme-menu__button:hover {
+  opacity: 0.6;
+}
+.theme-menu__button:focus {
+  opacity: 0.6;
+}
+.theme-menu__button:focus-visible {
+  opacity: 0.6;
+}
+
+.theme-menu__button::after {
+  content: "";
+  position: absolute;
+  width: 100%;
+  height: 1px;
+  bottom: -2px;
+  left: 0;
+  background-color: var(--color-main);
+  transform: scaleX(0);
+  transition: transform 0.3s;
+  transform-origin: 0 0;
+}
+.theme-menu__button:focus-visible::after {
+  transition: transform 0.3s;
+  transform: scaleX(1);
+}
+
+/* Стилизация основного контента */
+
+.main {
+  background-color: white;
   display: flex;
   flex-direction: column;
   gap: 50px;
-  inline-size:clamp(375px, calc(31% + 258px), 700px);
-    
-
+  inline-size: clamp(375px, calc(31% + 258px), 700px);
+  /* inline-size: min(100%,700px); */
 }
-
-.article{
+/* Стилизация конкртной карточки */
+.article {
   display: flex;
   flex-direction: column;
   font-size: var(--font-size-main);
+  /* inline-size: min(100%,700px); */
+  /* inline-size:clamp(375px, calc(31% + 258px), 700px); */
 }
-.article_title{
-  align-self: flex-start;
+.article_title {
   padding-inline: 10px;
   padding-top: 4px;
   font-variation-settings: "wght" var(--article-title-weight, 700);
   font-size: inherit;
   border: var(--border);
-  border-block-end:none;
-
+  border-block-end: none;
 }
-.article_image{
+.article_image {
   border: var(--border);
   width: 100%;
-  height: clamp(320px,100vw,700px);
+  height: clamp(320px, 100vw, 700px);
 }
 
-.image{
+.image {
   width: 100%;
   height: 100%;
   object-fit: cover;
   object-position: center;
 }
 
-.article_content{
+.article_content {
   display: flex;
   flex-direction: column;
   padding: 25px;
-  border:var(--border);
+  border: var(--border);
 }
-.article_text{
+.article_text {
   padding-block-end: 27px;
   line-height: 21px;
 }
-.memory_text{
+.memory_text {
   padding-block-end: 25px;
   line-height: 21px;
-
 }
-
+/* Стилизация кнопок */
 
 .article_button {
   display: flex;
   justify-content: end;
   gap: 7px;
   background-color: white;
- 
 }
 
 .button {
   outline: none;
   background-color: transparent;
   border: none;
-  
 }
 
-.button__text{
+.button__text {
   font-family: var(--accent-font-family);
   font-size: 14px;
   line-height: 90%;
 }
 
-.card__like-button{
+.card__like-button {
+  position: relative;
   display: flex;
   min-inline-size: 130px;
   min-block-size: 38px;
-  padding:9px 0px;
+  padding: 12px 0px;
   justify-content: center;
   border: var(--border);
+  cursor: pointer;
+}
+
+/* Стилизация состояния фокус, ховер и анимации кнопок*/
+.card__like-button:focus {
+  outline: none;
+  box-shadow: 2px 2px;
+  transition: transform 0.3s;
+}
+.card__like-button::after {
+  content: "";
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background-color: var(--color-main);
+  transition: transform 0.5s ease-in-out;
+  transform-origin: 0 0;
+  transform: scaleX(0);
+  top: 0px;
+}
+.card__like-button:hover::after {
+  transform: scaleX(1);
+}
+.button__text {
+  z-index: 1;
+  color: var(--button-text, #fff);
+  mix-blend-mode: difference;
+}
+
+/* Стилизация анимации сердца */
+.sparks {
+  opacity: 0;
+}
+.card__icon-button {
+  block-size: 38px;
+}
+
+/* Стилизация футера, модального окна и кнопки */
+.footer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding-block-end: 50px;
+  width: 100%;
+  
+}
+.save_memory {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  padding: 15px;
+  border: var(--border);
+  background-color:white;
+  font-family: var(--accent-font-family);
+  font-size:14px;
+  gap: 8px;
+  inline-size: clamp(306px, 75%, 341px);
+}
+
+.floppy {
+  max-width: 28px;
 }
