@@ -182,6 +182,9 @@
   font-family: var(--accent-font-family);
   font-size: 14px;
   line-height: 90%;
+  z-index: 1;
+  color: var(--button-text, #000);
+  mix-blend-mode: difference;
 }
 
 .card__like-button {
@@ -215,11 +218,6 @@
 .card__like-button:hover::after {
   transform: scaleX(1);
 }
-.button__text {
-  z-index: 1;
-  color: var(--button-text, #fff);
-  mix-blend-mode: difference;
-}
 
 /* Стилизация анимации сердца */
 .sparks {
@@ -238,7 +236,8 @@
   width: 100%;
   
 }
-.save_memory {
+.button-save-memory {
+  position: relative;
   display: flex;
   flex-wrap: wrap;
   align-items: center;
@@ -254,4 +253,67 @@
 
 .floppy {
   max-width: 28px;
+  align-self: center;
+  z-index: 1;
+}
+
+
+.dialog {
+  border: var(--border);
+  padding-inline: clamp(30px, (375px - 100vw) * 10 / 325 + 40px, 40px);
+  padding-block: 30px;
+  background-color:white;
+  inline-size: min(100%, clamp(341px, (100vw - 375px) * 16 / 325 + 341px, 357px));
+}
+
+.dialog::backdrop {
+  opacity: 0.75;
+  background: var(--color-main, #000);
+}
+
+.dialog:modal {
+  max-width: 100%;
+  max-height: 100%;
+}
+
+.form {
+  display: grid;
+  grid-template-columns: 39px 1fr;
+  grid-template-rows: auto 38px;
+ gap:30px 20px;
+  text-transform: uppercase;
+}
+
+.button-dialog {
+  border: var(--border);
+  grid-column: span 2;
+  text-transform: uppercase;
+  
+}
+.text__modal_window{
+  font-size: 14px;
+  font-family: var(--accent-font-family);
+  font-weight: var(--article-text-weight);
+  color: var(--color-main);
+  line-height: 21px;
+}
+.button-save-memory:focus {
+  outline: none;
+  box-shadow: 2px 2px;
+  transition: transform 0.3s;
+}
+.button-save-memory::after {
+  content: "";
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background-color: var(--color-main);
+  transition: transform 0.5s ease-in-out;
+  transform-origin: 0 0;
+  transform: scaleX(0);
+  top: 0px;
+}
+.button-save-memory:hover::after {
+  transform: scaleX(1);
+  
 }

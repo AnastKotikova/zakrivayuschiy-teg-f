@@ -112,7 +112,7 @@
     <footer class="footer">
       <button
       type="button"
-      class="button save_memory"
+      class="button button-save-memory"
       onclick="window['dialog-save-memory'].showModal()"
       aria-controls="dialog-save-memory"
     >
@@ -122,10 +122,28 @@
       </use>
 
     </svg> 
-      <span class="text__save"> Сохранить на память </span>
+      <span class="button__text"> Сохранить на память </span>
     </button>
     </footer>
-
+    
+    <dialog id="dialog-save-memory" class="dialog">
+      <form name="dialog-save" method="dialog" class="form">
+        <svg class ="floppy" viewBox="0 0 28 28" fill="currentColor">
+          <use href="/svg/floppy.svg#floppy">
+          </use>
+    
+        </svg>         
+        <p class="text__modal_window">
+          Вставьте дискету, чтобы продолжить
+        </p>
+        <button type="submit" class=" button button-dialog">
+          <span class="button__text">
+            ок
+          </span>
+        </button>
+      </form>
+    </dialog>
+  
     <script src="./scripts/like.js"></script>
   </body>
 </html>
