@@ -40,7 +40,7 @@
   font-family: var(--accent-font-family);
   inline-size: min(100%, 700px);
   text-transform: uppercase;
-  background-color: white;
+  background-color: var(--bg-color);
 }
 .title {
   font-size: clamp(3.0625rem, 2.7104rem + 1.5023vw, 4.0625rem);
@@ -113,7 +113,7 @@
 /* Стилизация основного контента */
 
 .main {
-  background-color: white;
+  background-color: var(--bg-color,#fff);
   display: flex;
   flex-direction: column;
   gap: 50px;
@@ -169,13 +169,15 @@
   display: flex;
   justify-content: end;
   gap: 7px;
-  background-color: white;
+  background-color:var(--bg-color,#fff);
+  height: 38px;
 }
 
 .button {
   outline: none;
   background-color: transparent;
   border: none;
+  color: var(--color-main);
 }
 
 .button__text {
@@ -183,7 +185,7 @@
   font-size: 14px;
   line-height: 90%;
   z-index: 1;
-  color: var(--button-text, #000);
+  color: var(--button-text,#fff);
   mix-blend-mode: difference;
 }
 
@@ -199,9 +201,9 @@
 }
 
 /* Стилизация состояния фокус, ховер и анимации кнопок*/
-.card__like-button:focus {
+.card__like-button:focus-visible {
   outline: none;
-  box-shadow: 2px 2px;
+  box-shadow: 2px 2px var(--color-main,#000);
   transition: transform 0.3s;
 }
 .card__like-button::after {
@@ -224,7 +226,17 @@
   opacity: 0;
 }
 .card__icon-button {
+  outline: none;
+  display: flex;
   block-size: 38px;
+  align-items: center;
+  
+}
+.card__icon-button:focus-visible{
+  border: var(--border);
+}
+.like-icon{
+  display: block;
 }
 
 /* Стилизация футера, модального окна и кнопки */
@@ -244,25 +256,57 @@
   justify-content: center;
   padding: 15px;
   border: var(--border);
-  background-color:white;
+  background-color:var(--bg-color,#fff);
   font-family: var(--accent-font-family);
   font-size:14px;
   gap: 8px;
   inline-size: clamp(306px, 75%, 341px);
+  cursor: pointer;
 }
 
 .floppy {
+  mix-blend-mode: difference;
   max-width: 28px;
   align-self: center;
   z-index: 1;
+  color: var(--floppy-color-inverse,#fff);
+  transition: 0.5s ease-in-out;
+ 
 }
 
+.button-save-memory:focus-visible {
+  outline: none;
+  box-shadow: 2px 2px var(--color-main,#000);
+  transition: transform 0.3s;
+}
+.button-save-memory::after {
+  content: "";
+  z-index: 0;
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background-color: var(--color-main);
+  transition: transform 0.5s ease-in-out;
+  transform-origin: 0 0;
+  transform: scaleX(0);
+  top: 0px;
+}
+.button-save-memory:hover::after {
+  transform: scaleX(1);
+  
+}
+.button-save-memory:hover .floppy {
+  color: var(--floppy-color-inverse,#fff);
+  
+}
+
+/* Модальное окно */
 
 .dialog {
   border: var(--border);
   padding-inline: clamp(30px, (375px - 100vw) * 10 / 325 + 40px, 40px);
   padding-block: 30px;
-  background-color:white;
+  background-color:var(--bg-color,#fff);
   inline-size: min(100%, clamp(341px, (100vw - 375px) * 16 / 325 + 341px, 357px));
 }
 
@@ -285,9 +329,12 @@
 }
 
 .button-dialog {
+  position: relative;
   border: var(--border);
   grid-column: span 2;
   text-transform: uppercase;
+  background-color:var(--bg-color);
+  cursor: pointer;
   
 }
 .text__modal_window{
@@ -297,13 +344,15 @@
   color: var(--color-main);
   line-height: 21px;
 }
-.button-save-memory:focus {
+
+.button-dialog:focus-visible {
   outline: none;
-  box-shadow: 2px 2px;
+  box-shadow: 2px 2px var(--color-main,#000);
   transition: transform 0.3s;
 }
-.button-save-memory::after {
+.button-dialog::before {
   content: "";
+  z-index: 0;
   position: absolute;
   width: 100%;
   height: 100%;
@@ -312,8 +361,13 @@
   transform-origin: 0 0;
   transform: scaleX(0);
   top: 0px;
+  left: 0px;
 }
-.button-save-memory:hover::after {
+.button-dialog:hover::before{
   transform: scaleX(1);
+  
+}
+.button-dialog:hover  {
+  color: var(--bg-color,#fff);
   
 }

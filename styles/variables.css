@@ -9,6 +9,7 @@
   --line-height: normal;
   --inline-size: min(100%, 700px);
   --border: 2px solid #000;
+  --bg-color: #fff;
   --button-text:#fff;
   --bg-gradient: repeating-linear-gradient(
       to right,
@@ -25,8 +26,7 @@
       transparent 4px
     ),
     linear-gradient(to bottom, #e7e7e7 0.01%, #1a1a1a 100%);
-    --contour-heart:#000;
-    --accent-color-heart:red;
-
-
+  --contour-heart: #000;
+  --accent-color-heart: red;
+  --floppy-color-inverse:#fff;
 }

@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="ru">
   <head>
-    <meta name="color-scheme" content="light dark" />
+    <meta name="color-scheme" content="dark light" />
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Закрывающий тег</title>
@@ -116,7 +116,7 @@
       onclick="window['dialog-save-memory'].showModal()"
       aria-controls="dialog-save-memory"
     >
-    <svg class ="floppy" viewBox="0 0 28 28">
+    <svg class ="floppy" viewBox="0 0 28 28" fill="currentColor">
       <use href="/svg/floppy.svg#floppy">
 
       </use>
@@ -128,12 +128,12 @@
     
     <dialog id="dialog-save-memory" class="dialog">
       <form name="dialog-save" method="dialog" class="form">
-        <svg class ="floppy" viewBox="0 0 28 28" fill="currentColor">
+        <svg class ="floppy" viewBox="0 0 28 28" fill="currentColor" mix-blend-mode: difference>
           <use href="/svg/floppy.svg#floppy">
           </use>
     
         </svg>         
-        <p class="text__modal_window">
+        <p class="text__modal_window" mix-blend-mode: difference>
           Вставьте дискету, чтобы продолжить
         </p>
         <button type="submit" class=" button button-dialog">
