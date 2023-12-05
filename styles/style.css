@@ -291,8 +291,8 @@
   align-items: center;
   padding-block-end: 50px;
   width: 100%;
-  /* inline-size:  clamp(19.125rem, 18.496rem + 3vw, 21.22rem); */
 }
+
 .button-save-memory {
   position: relative;
   display: flex;
