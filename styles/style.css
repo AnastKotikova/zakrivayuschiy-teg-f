@@ -19,8 +19,7 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  gap: 100px;
-  padding-block-start: 100px;
+
   min-inline-size: 320px;
   min-block-size: 100dvb;
   font-family: var(--main-font-family);
@@ -41,10 +40,12 @@
   text-transform: uppercase;
   background-color: var(--bg-color);
   inline-size: clamp(23.188rem, 15.986rem + 31.057vw, 43.938rem);
+  margin-block-end: 100px;
+  margin-block-start: 100px;
 }
 .title {
   font-size: clamp(3.0625rem, 2.7104rem + 1.5023vw, 4.0625rem);
-  padding-block-start: clamp(7.5rem, 7.153rem + 1.497vw, 8.5rem);
+  padding-block-start: min(120px, 136px);
 }
 
 .text-decoration {
@@ -119,6 +120,7 @@
   gap: 50px;
   align-items: center;
   inline-size: clamp(375px, calc(31% + 258px), 700px);
+  margin-block-end: 50px;
 }
 /* Стилизация конкртной карточки */
 .article {
@@ -131,14 +133,18 @@
   background-color: var(--bg-color);
   padding-inline: 10px;
   padding-top: 4px;
+  padding-block-end: 3px;
   font-variation-settings: "wght" var(--article-title-weight, 700);
   font-size: inherit;
   border: var(--border);
   border-block-end: none;
 }
 .article_image {
+  position: relative;
   border: var(--border);
+  border-block-end: none;
   width: 100%;
+  filter: none;
 }
 
 .image {
@@ -148,6 +154,44 @@
   object-fit: cover;
   object-position: center;
   block-size: clamp(23.188rem, 16.116rem + 30.496vw, 43.563rem);
+}
+
+/* Наложение фильтров на изображения */
+.image-filter-sepia {
+  filter: sepia();
+}
+.image-filter-invert {
+  filter: invert();
+}
+.image-filter-brightess {
+  filter: brightness(50%);
+}
+.image-filter-opacity {
+  filter: opacity(70%);
+}
+.image-filter-hue-rotate {
+  filter: hue-rotate(90deg);
+}
+.image-filter-blur {
+  filter: blur(5px);
+}
+.image-filter {
+  filter: brightness(50%) saturate(120%) hue-rotate(-45deg);
+}
+
+/*  */
+.card-leble {
+  filter: none;
+  z-index: 2;
+  position: absolute;
+  right: 25px;
+  top: 25px;
+  font-size: 14px;
+  line-height: 14px;
+  font-family: var(--accent-font-family);
+  color: var(--color-main);
+  mix-blend-mode: hard-light;
+  opacity: 0.5;
 }
 
 .article_content {
@@ -171,7 +215,7 @@
   display: flex;
   justify-content: end;
   gap: 7px;
-  background-color:var(--bg-color,#fff);
+  background-color: var(--bg-color, #fff);
   height: 38px;
 }
 
@@ -187,7 +231,7 @@
   font-size: 14px;
   line-height: 90%;
   z-index: 1;
-  color: var(--button-text,#fff);
+  color: var(--button-text, #fff);
   mix-blend-mode: difference;
 }
 
@@ -205,7 +249,7 @@
 /* Стилизация состояния фокус, ховер и анимации кнопок*/
 .card__like-button:focus-visible {
   outline: none;
-  box-shadow: 2px 2px var(--color-main,#000);
+  box-shadow: 2px 2px var(--color-main, #000);
   transition: transform 0.3s;
 }
 .card__like-button::after {
@@ -232,12 +276,11 @@
   display: flex;
   block-size: 38px;
   align-items: center;
-  
 }
-.card__icon-button:focus-visible{
+.card__icon-button:focus-visible {
   border: var(--border);
 }
-.like-icon{
+.like-icon {
   display: block;
 }
 
@@ -248,8 +291,7 @@
   align-items: center;
   padding-block-end: 50px;
   width: 100%;
-  inline-size:  clamp(19.125rem, 18.496rem + 3vw, 21.22rem);
-  
+  /* inline-size:  clamp(19.125rem, 18.496rem + 3vw, 21.22rem); */
 }
 .button-save-memory {
   position: relative;
@@ -259,9 +301,9 @@
   justify-content: center;
   padding: 15px;
   border: var(--border);
-  background-color:var(--bg-color,#fff);
+  background-color: var(--bg-color, #fff);
   font-family: var(--accent-font-family);
-  font-size:14px;
+  font-size: 14px;
   gap: 8px;
   inline-size: clamp(306px, 75%, 341px);
   cursor: pointer;
@@ -272,14 +314,13 @@
   max-width: 28px;
   align-self: center;
   z-index: 1;
-  color: var(--floppy-color-inverse,#fff);
+  color: var(--floppy-color-inverse, #fff);
   transition: 0.5s ease-in-out;
- 
 }
 
 .button-save-memory:focus-visible {
   outline: none;
-  box-shadow: 2px 2px var(--color-main,#000);
+  box-shadow: 2px 2px var(--color-main, #000);
   transition: transform 0.3s;
 }
 .button-save-memory::after {
@@ -296,11 +337,9 @@
 }
 .button-save-memory:hover::after {
   transform: scaleX(1);
-  
 }
 .button-save-memory:hover .floppy {
-  color: var(--floppy-color-inverse,#fff);
-  
+  color: var(--floppy-color-inverse, #fff);
 }
 
 /* Модальное окно */
@@ -309,8 +348,11 @@
   border: var(--border);
   padding-inline: clamp(30px, (375px - 100vw) * 10 / 325 + 40px, 40px);
   padding-block: 30px;
-  background-color:var(--bg-color,#fff);
-  inline-size: min(100%, clamp(341px, (100vw - 375px) * 16 / 325 + 341px, 357px));
+  background-color: var(--bg-color, #fff);
+  inline-size: min(
+    100%,
+    clamp(341px, (100vw - 375px) * 16 / 325 + 341px, 357px)
+  );
 }
 
 .dialog::backdrop {
@@ -327,7 +369,7 @@
   display: grid;
   grid-template-columns: 39px 1fr;
   grid-template-rows: auto 38px;
- gap:30px 20px;
+  gap: 30px 20px;
   text-transform: uppercase;
 }
 
@@ -336,11 +378,10 @@
   border: var(--border);
   grid-column: span 2;
   text-transform: uppercase;
-  background-color:var(--bg-color);
+  background-color: var(--bg-color);
   cursor: pointer;
-  
 }
-.text__modal_window{
+.text__modal_window {
   font-size: 14px;
   font-family: var(--accent-font-family);
   font-weight: var(--article-text-weight);
@@ -350,7 +391,7 @@
 
 .button-dialog:focus-visible {
   outline: none;
-  box-shadow: 2px 2px var(--color-main,#000);
+  box-shadow: 2px 2px var(--color-main, #000);
   transition: transform 0.3s;
 }
 .button-dialog::before {
@@ -366,11 +407,9 @@
   top: 0px;
   left: 0px;
 }
-.button-dialog:hover::before{
+.button-dialog:hover::before {
   transform: scaleX(1);
-  
 }
-.button-dialog:hover  {
-  color: var(--bg-color,#fff);
-  
+.button-dialog:hover {
+  color: var(--bg-color, #fff);
 }
