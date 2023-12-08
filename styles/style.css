@@ -222,18 +222,17 @@
   padding: 25px;
   border: var(--border);
 }
+
 .article_text {
-  padding-block-end: 27px;
+  display: grid;
+  gap: 27px;
+  padding-block-end: 25px;
   line-height: 21px;
 }
 
 .article_text:last-child {
   padding-right: 0px;
-}
-
-.memory_text {
-  padding-block-end: 25px;
-  line-height: 21px;
+  padding-block-end: 0px;
 }
 
 .article_button {
@@ -324,7 +323,8 @@
   inline-size: clamp(306px, 75%, 341px);
 }
 
-.floppy {
+.floppy,
+.floppy_dialog {
   mix-blend-mode: difference;
   inline-size: 21px;
   block-size: 21px;
@@ -332,6 +332,11 @@
   z-index: 1;
   color: var(--floppy-color-inverse, #fff);
   transition: 0.5s ease-in-out;
+}
+
+.floppy_dialog {
+  inline-size: 39px;
+  block-size: 39px;
 }
 
 .button-save-memory:hover .floppy {
@@ -382,10 +387,6 @@
 
 .button-dialog:hover {
   color: var(--bg-color, #fff);
-}
-.floppy_dialog {
-  width: 39px;
-  height: 39px;
 }
 
 @media (max-width: 376px) {
